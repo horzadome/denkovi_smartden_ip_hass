@@ -72,5 +72,7 @@ LOG_LEVEL: INFO
 
 # The PR comment uses a text link instead of the OX banner image.
 REPORTERS_MARKDOWN_TYPE: simple
+# Do not add a custom-flavor suggestion to the report footer.
+FLAVOR_SUGGESTIONS: false
 OUTPUT_FORMAT: tap
 OUTPUT_DETAIL: detailed
