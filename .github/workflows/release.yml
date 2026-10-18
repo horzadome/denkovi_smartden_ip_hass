@@ -48,7 +48,9 @@ jobs:
             echo "Bump version in manifest.json to release this merge."
             exit 0
           fi
+          notes=$(cat .github/release-notes.md)
           gh release create "$tag" \
             --target "$GITHUB_SHA" \
             --title "$tag" \
+            --notes "$notes" \
             --generate-notes
