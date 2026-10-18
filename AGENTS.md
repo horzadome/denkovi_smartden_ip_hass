@@ -10,7 +10,7 @@ Read and obey the following in their entirety before doing any work on this proj
 
 ## Scope
 
-Only work on integration `denkovi-smartden-ip-hass`, a custom component for Home Assistant.  
+Only work on integration `denkovi_smartden_ip`, a custom component for Home Assistant.  
 Never work on homeassistant code - it is only there as a reference. We do not develop homeassistant, only our integration.
 
 ## Linters - IMPORTANT
