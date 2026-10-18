@@ -73,6 +73,26 @@ inside that container. Never run Python on the host machine.
 The `CHANNEL_GROUPS` table in `const.py` holds the channel groups. Add an array there after you
 check its format against the manual and, where possible, against a device.
 
+## Branch and release flow
+
+`main` accepts changes only through a pull request. A pull request can come from a fork or
+from a branch in this repository. The repository owner applies the ruleset in
+[.github/rulesets/main.json](.github/rulesets/main.json) one time:
+
+```bash
+gh api --method POST repos/horzadome/denkovi_smartden_ip_hass/rulesets \
+  --input .github/rulesets/main.json
+```
+
+The ruleset requires a pull request and the `MegaLinter`, `Hassfest` and `HACS validation`
+checks. It blocks force pushes and deletion. It has no bypass actor.
+
+A merge to `main` starts [.github/workflows/release.yml](.github/workflows/release.yml).
+The workflow creates a GitHub release and generates the notes. The tag is
+`v<major>.<minor>.<run_number>`: the major and minor parts come from `version` in
+`manifest.json`, and the patch is the GitHub Actions run number. Do not create a tag or a
+release by hand.
+
 ## Manuals
 
 [Denkovi smartDEN IP-16R Manual](https://denkovi.com/Documents/smartDen-IP-16R/Current-Version/UserManual.pdf)

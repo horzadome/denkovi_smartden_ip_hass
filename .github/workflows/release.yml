@@ -1,0 +1,53 @@
+---
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # The release follows a merged pull request, not a direct push.
+          if ! merged=$(gh api \
+            "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/pulls" \
+            --jq '[.[] | select(.merged_at != null)] | length'); then
+            echo "Could not read the pull requests for ${GITHUB_SHA}."
+            exit 1
+          fi
+          case "$merged" in
+            '' | *[!0-9]*)
+              echo "The pull request count is not a number: ${merged}"
+              exit 1
+              ;;
+          esac
+          if [ "$merged" -eq 0 ]; then
+            echo "No merged pull request is associated with ${GITHUB_SHA}."
+            exit 1
+          fi
+          base=$(jq -r '.version' custom_components/denkovi_smartden_ip/manifest.json | cut -d. -f1-2)
+          tag="v${base}.${GITHUB_RUN_NUMBER}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "The release $tag exists."
+            exit 0
+          fi
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "$tag" \
+            --generate-notes
