@@ -41,10 +41,11 @@ jobs:
             echo "No merged pull request is associated with ${GITHUB_SHA}."
             exit 1
           fi
-          base=$(jq -r '.version' custom_components/denkovi_smartden_ip/manifest.json | cut -d. -f1-2)
-          tag="v${base}.${GITHUB_RUN_NUMBER}"
+          version=$(jq -r '.version' custom_components/denkovi_smartden_ip/manifest.json)
+          tag="v${version}"
           if gh release view "$tag" >/dev/null 2>&1; then
-            echo "The release $tag exists."
+            echo "The version ${version} already has a release."
+            echo "Bump version in manifest.json to release this merge."
             exit 0
           fi
           gh release create "$tag" \

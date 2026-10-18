@@ -84,14 +84,18 @@ gh api --method POST repos/horzadome/denkovi_smartden_ip_hass/rulesets \
   --input .github/rulesets/main.json
 ```
 
-The ruleset requires a pull request and the `MegaLinter`, `Hassfest` and `HACS validation`
-checks. It blocks force pushes and deletion. It has no bypass actor.
+The ruleset requires a pull request, one approving review and the `MegaLinter`, `Hassfest`
+and `HACS validation` checks. It requires the code owner in
+[.github/CODEOWNERS](.github/CODEOWNERS) to approve, dismisses stale reviews, and blocks
+force pushes and deletion. The repository admin can bypass the rules only through a pull
+request. Direct pushes stay blocked.
 
 A merge to `main` starts [.github/workflows/release.yml](.github/workflows/release.yml).
-The workflow creates a GitHub release and generates the notes. The tag is
-`v<major>.<minor>.<run_number>`: the major and minor parts come from `version` in
-`manifest.json`, and the patch is the GitHub Actions run number. Do not create a tag or a
-release by hand.
+The workflow creates a GitHub release for the `version` in
+[manifest.json](custom_components/denkovi_smartden_ip/manifest.json) and tags it
+`v<version>`. Bump `version` in `manifest.json` in the PR that releases, so the tag and
+the manifest hold the same value. A merge that leaves the version unchanged gets no new
+release. Do not create a tag or a release by hand.
 
 ## Manuals
 
