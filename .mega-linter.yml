@@ -70,5 +70,7 @@ SHOW_ELAPSED_TIME: true
 PRINT_ALPACA: false
 LOG_LEVEL: INFO
 
+# The PR comment uses a text link instead of the OX banner image.
+REPORTERS_MARKDOWN_TYPE: simple
 OUTPUT_FORMAT: tap
 OUTPUT_DETAIL: detailed
