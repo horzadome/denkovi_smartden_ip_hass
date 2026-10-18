@@ -20,6 +20,12 @@ A relay of the smartDEN family changes with the `RelayN` query parameter. An exa
 `/current_state.json?pw=PASSWORD&Relay1=1`. The DAEnetIP4 uses `OutputN`. Each group lists
 its arrays, the kind of its value and its parameter names in `CHANNEL_GROUPS` in `const.py`.
 
+## Out of scope
+
+The integration omits SNMP, because SNMP differs a lot from HTTP and the devices rarely need
+it. It does not use XML or HTML unless necessary, because JSON is more efficient. It does
+not encrypt the password, because the device then loses the Multiple Access feature.
+
 ## Development and validation
 
 The repository uses GitHub Actions for hassfest, HACS validation and MegaLinter.
@@ -93,9 +99,10 @@ request. Direct pushes stay blocked.
 A merge to `main` starts [.github/workflows/release.yml](.github/workflows/release.yml).
 The workflow creates a GitHub release for the `version` in
 [manifest.json](custom_components/denkovi_smartden_ip/manifest.json) and tags it
-`v<version>`. Bump `version` in `manifest.json` in the PR that releases, so the tag and
-the manifest hold the same value. A merge that leaves the version unchanged gets no new
-release. Do not create a tag or a release by hand.
+`v<version>`. The notes hold [.github/release-notes.md](.github/release-notes.md), then the
+list of merged pull requests that GitHub generates. Bump `version` in `manifest.json` in the
+PR that releases, so the tag and the manifest hold the same value. A merge that leaves the
+version unchanged gets no new release. Do not create a tag or a release by hand.
 
 ## Manuals
 
