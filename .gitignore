@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+homeassistant_repo
+megalinter-reports/
+.agent-teams/
+.pdfpages/
+.ruff_cache

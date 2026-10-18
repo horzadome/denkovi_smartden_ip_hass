@@ -1,0 +1,14 @@
+# Pylint configuration for the MegaLinter gate.
+#
+# MegaLinter passes its own configuration as --rcfile while this file is
+# absent, and pylint 4 rejects the suggestion-mode option that configuration
+# sets. This file replaces it and keeps the mode of the gate: errors only.
+[MAIN]
+errors-only = yes
+extension-pkg-allow-list = homeassistant, aiohttp, voluptuous, yaml
+
+[FORMAT]
+max-line-length = 140
+
+[BASIC]
+good-names = i, j, k, ex, Run, _, id, ip

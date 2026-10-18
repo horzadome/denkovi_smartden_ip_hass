@@ -1,0 +1,114 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to a Denkovi device",
+        "description": "The integration reads relays, digital inputs, analog inputs and temperature inputs through the device JSON API.",
+        "data": {
+          "host": "Host or IP address",
+          "port": "HTTP port",
+          "password": "Device password",
+          "scan_interval": "Polling interval (seconds)"
+        }
+      },
+      "relays": {
+        "title": "Relay types",
+        "description": "Choose the entity type of the relays. Set the type for all relays first, then change single relays.",
+        "data": {
+          "relay_type": "Type for all relays",
+          "relay_1": "Relay 1",
+          "relay_2": "Relay 2",
+          "relay_3": "Relay 3",
+          "relay_4": "Relay 4",
+          "relay_5": "Relay 5",
+          "relay_6": "Relay 6",
+          "relay_7": "Relay 7",
+          "relay_8": "Relay 8",
+          "relay_9": "Relay 9",
+          "relay_10": "Relay 10",
+          "relay_11": "Relay 11",
+          "relay_12": "Relay 12",
+          "relay_13": "Relay 13",
+          "relay_14": "Relay 14",
+          "relay_15": "Relay 15",
+          "relay_16": "Relay 16"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect or authenticate. Check the address, password, and JSON API settings.",
+      "no_title": "The device web page has no title.",
+      "no_channels": "The device reported empty channel groups.",
+      "unsupported_device": "The device reported no channel group that the integration knows."
+    },
+    "abort": {
+      "already_configured": "This device is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Denkovi smartDEN IP Devices options",
+        "data": {
+          "host": "Host or IP address",
+          "port": "HTTP port",
+          "scan_interval": "Polling interval (seconds)"
+        }
+      },
+      "relays": {
+        "title": "Relay types",
+        "description": "Choose the entity type of the relays. Set the type for all relays first, then change single relays.",
+        "data": {
+          "relay_type": "Type for all relays",
+          "relay_1": "Relay 1",
+          "relay_2": "Relay 2",
+          "relay_3": "Relay 3",
+          "relay_4": "Relay 4",
+          "relay_5": "Relay 5",
+          "relay_6": "Relay 6",
+          "relay_7": "Relay 7",
+          "relay_8": "Relay 8",
+          "relay_9": "Relay 9",
+          "relay_10": "Relay 10",
+          "relay_11": "Relay 11",
+          "relay_12": "Relay 12",
+          "relay_13": "Relay 13",
+          "relay_14": "Relay 14",
+          "relay_15": "Relay 15",
+          "relay_16": "Relay 16"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect or authenticate. Check the address and JSON API settings.",
+      "wrong_device": "That address answers, but it is a different device. Check the address."
+    }
+  },
+  "selector": {
+    "relay_type": {
+      "options": {
+        "switch": "Switch",
+        "outlet": "Outlet",
+        "cover": "Cover",
+        "fan": "Fan",
+        "light": "Light",
+        "lock": "Lock",
+        "siren": "Siren",
+        "valve": "Valve"
+      }
+    },
+    "relay_option": {
+      "options": {
+        "default": "Use the type for all relays",
+        "switch": "Switch",
+        "outlet": "Outlet",
+        "cover": "Cover",
+        "fan": "Fan",
+        "light": "Light",
+        "lock": "Lock",
+        "siren": "Siren",
+        "valve": "Valve"
+      }
+    }
+  }
+}

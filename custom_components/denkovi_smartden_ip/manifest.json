@@ -1,0 +1,13 @@
+{
+  "domain": "denkovi_smartden_ip",
+  "name": "Denkovi smartDEN IP Devices",
+  "codeowners": ["@horzadome"],
+  "config_flow": true,
+  "documentation": "https://github.com/horzadome/denkovi-smartden-ip-hass",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/horzadome/denkovi-smartden-ip-hass/issues",
+  "loggers": ["custom_components.denkovi_smartden_ip"],
+  "requirements": [],
+  "version": "0.1.0"
+}

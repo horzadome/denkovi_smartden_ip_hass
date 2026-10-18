@@ -1,0 +1,17 @@
+# Ruff settings for this project. MegaLinter passes this file to ruff and to its formatter, so
+# an editor that reads it shows the same result. MegaLinter looks for this file name at the
+# project root, and it falls back to its own default when the file is absent.
+line-length = 140
+target-version = "py314"
+extend-exclude = ["megalinter-reports"]
+
+[lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # Pyflakes
+  "I",  # isort
+  "B",  # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "UP", # pyupgrade
+]

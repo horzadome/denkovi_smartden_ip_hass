@@ -1,0 +1,9 @@
+.git
+.venv
+homeassistant_repo
+megalinter-reports
+__pycache__
+.pytest_cache
+.ruff_cache
+.agent-teams
+.pdfpages

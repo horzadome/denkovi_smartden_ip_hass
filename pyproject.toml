@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+# The linter settings live beside this file, under the names MegaLinter reads: .ruff.toml,
+# .pylintrc, .mypy.ini, .bandit.yml, .markdownlint.json and .yamllint.yml.

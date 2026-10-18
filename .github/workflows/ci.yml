@@ -1,0 +1,48 @@
+---
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  megalinter:
+    name: MegaLinter
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: MegaLinter
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/tmp/lint:rw" \
+            -e DEFAULT_WORKSPACE=/tmp/lint \
+            -e MEGALINTER_CONFIG=.mega-linter.yml \
+            -e APPLY_FIXES=none \
+            ghcr.io/oxsecurity/megalinter-python:v10 /entrypoint.sh
+
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hacs/action@main
+        with:
+          category: integration

@@ -1,0 +1,74 @@
+---
+# MegaLinter configuration for the Denkovi smartDEN IP Devices integration
+# https://megalinter.io/latest/configuration/
+
+APPLY_FIXES: all
+CLEAR_REPORT_FOLDER: true
+DEFAULT_BRANCH: main
+
+ENABLE:
+  - YAML
+  - PYTHON
+  - JSON
+  - MARKDOWN
+  - REPOSITORY
+  - BASH
+  - DOCKERFILE
+
+# One linter for one job. ruff lints and formats Python, so flake8, isort and black add
+# nothing. No linter of the flavor checks types for ruff, so mypy stays and pyright goes.
+DISABLE_LINTERS:
+  - REPOSITORY_CHECKOV
+  - REPOSITORY_TRIVY
+  - REPOSITORY_TRIVY_SBOM
+  - REPOSITORY_GRYPE
+  - REPOSITORY_SYFT
+  - REPOSITORY_DEVSKIM
+  - JSON_V8R
+  - PYTHON_BLACK
+  - PYTHON_FLAKE8
+  - PYTHON_ISORT
+  - PYTHON_NBQA_MYPY
+  - PYTHON_PYRIGHT
+
+BASH_SHFMT_ARGUMENTS: "--indent 4"
+
+# ruff also formats. MegaLinter defaults to black, which this project does not run.
+PYTHON_DEFAULT_STYLE: ruff
+
+# The MegaLinter appliance holds no Home Assistant, so pylint cannot resolve its
+# imports. These two are the import-resolution messages; every other pylint
+# message still reports.
+PYTHON_PYLINT_ARGUMENTS: "--disable=import-error,no-name-in-module"
+
+FILTER_REGEX_EXCLUDE: |
+  (
+    __pycache__/.*|
+    \.git/.*|
+    \.venv/.*|
+    \.eggs/.*|
+    \.egg-info/.*|
+    dist/.*|
+    build/.*|
+    \.tox/.*|
+    megalinter-reports/.*|
+    htmlcov/.*|
+    homeassistant_repo/.*|
+    \.agent-teams/.*
+  )
+
+# A linter that runs in project mode walks a directory itself, where the filter above
+# does not reach it.
+ADDITIONAL_EXCLUDED_DIRECTORIES:
+  - .venv
+  - homeassistant_repo
+  - megalinter-reports
+  - __pycache__
+
+FORMATTERS_DISABLE_ERRORS: false
+SHOW_ELAPSED_TIME: true
+PRINT_ALPACA: false
+LOG_LEVEL: INFO
+
+OUTPUT_FORMAT: tap
+OUTPUT_DETAIL: detailed

@@ -1,0 +1,6 @@
+# Home Assistant test harness. It pins the matching homeassistant and pytest.
+pytest-homeassistant-custom-component==0.13.371
+# The harness takes anyio and idna from httpx, which names no version for them.
+# Both advisories need these minimum versions.
+anyio>=4.14.2
+idna>=3.15
