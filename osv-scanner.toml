@@ -1,0 +1,9 @@
+# Home Assistant pins Pillow exactly, so the test environment cannot move past it.
+# The integration decodes no images. The entry expires so a later Home Assistant
+# release forces a new check.
+[[PackageOverrides]]
+name = "pillow"
+ecosystem = "PyPI"
+vulnerability.ignore = true
+effectiveUntil = 2026-11-30
+reason = "homeassistant==2026.10.4 pins Pillow==12.3.0 and the integration parses no images"
