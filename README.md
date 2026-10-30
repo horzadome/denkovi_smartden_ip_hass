@@ -79,7 +79,7 @@ entity: rename, icon, type, area.
 
 These devices do not support any kind of secure communication.  
 Therefore, this integration cannot communicate securely with them. It sends the password in the URL,
-without encryption, and Home Assistant writes that URL to its log.  
+without encryption.
 An attacker on the same network can read the password and control the device.  
 Put these devices on a separate network or VLAN, and never expose them to the internet.
 

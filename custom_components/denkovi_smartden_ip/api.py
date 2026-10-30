@@ -240,12 +240,12 @@ class DenkoviClient:
                 response.raise_for_status()
                 try:
                     document = await response.json(content_type=None)
-                except (ValueError, aiohttp.ContentTypeError) as err:
-                    raise DenkoviConnectionError("Device returned invalid JSON") from err
+                except ValueError, aiohttp.ContentTypeError:
+                    raise DenkoviConnectionError("Device returned invalid JSON") from None
         except DenkoviApiError:
             raise
-        except (aiohttp.ClientError, TimeoutError) as err:
-            raise DenkoviConnectionError(f"Unable to reach {self.host}:{self.port}") from err
+        except aiohttp.ClientError, TimeoutError:
+            raise DenkoviConnectionError(f"Unable to reach {self.host}:{self.port}") from None
 
         if not isinstance(document, dict):
             raise DenkoviConnectionError("Device returned invalid JSON")
